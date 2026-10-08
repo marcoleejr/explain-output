@@ -27,14 +27,14 @@ The agent still writes the plain summary. It adds a richer format only when that
 
 ## The ladder
 
-Pick the lowest rung that makes the content clear.
+Rung 1 applies to every reply. Higher rungs are added on top only when their criterion is met. The agent never announces the rung and never upsells a richer format.
 
 | Rung | Format | Use when | Example |
 |:--:|---|---|---|
-| **1** | **Constrained text**<br><sub>about 80% ASD-STE100</sub> | Default. Up to 3 findings, no relationships to show. | <img src="assets/rung-1.png" alt="Result, evidence, next step" width="300"> |
-| **2** | **Diagram**<br><sub>Mermaid, D2, SVG</sub> | The content is relationships: flows, architecture, timelines, decision trees. | <img src="assets/rung-2.png" alt="Flowchart that names the failing step" width="300"> |
-| **3** | **Single-file HTML**<br><sub>one .html file, no build</sub> | More than 3 findings, any data or metrics, audits, comparisons, plans. | <img src="assets/rung-3.png" alt="Report with verdict, table and status colors" width="300"> |
-| **4** | **Explainer video**<br><sub>60–120 s, narration</sub> | Teaching or marketing content, or when you ask for it. Never the default. | <img src="assets/rung-4.png" alt="Animated explainer with captions" width="300"> |
+| **1** | **Constrained text**<br><sub>about 80% ASD-STE100</sub> | **Always.** Every reply, from a one-line answer to a full audit. Free. | <img src="assets/rung-1.png" alt="Result, evidence, next step" width="300"> |
+| **2** | **Diagram**<br><sub>Mermaid, D2, SVG</sub> | A flow, architecture, dependency map, timeline or decision tree with 4+ nodes. Fenced `mermaid` block. | <img src="assets/rung-2.png" alt="Flowchart that names the failing step" width="300"> |
+| **3** | **Single-file HTML**<br><sub>one .html file, no build</sub> | More than 6 findings, more than 12 numbers, more than 2 comparison dimensions, or you ask for a report. If a Markdown table fits, no HTML. | <img src="assets/rung-3.png" alt="Report with verdict, table and status colors" width="300"> |
+| **4** | **Explainer video**<br><sub>60–120 s, narration</sub> | Only when you ask for a video. Never from the topic alone. | <img src="assets/rung-4.png" alt="Animated explainer with captions" width="300"> |
 
 Rung 1 in full:
 
@@ -86,7 +86,20 @@ Copy the `explain-output/` folder into the harness skills path. The folder name 
 
 ## When it triggers
 
-The description activates the skill when a reply **explains, reports, summarizes, audits, reviews or compares** something, or when it carries **more than 3 findings, data, metrics, flows, architecture, dependencies or timelines**. You can also invoke it by name.
+On every reply. Rung 1 costs nothing, so short answers get tighter instead of slower.
+
+## Tested
+
+Clean A/B in Pi (no other skills, no global context), 8 scenarios, 2 runs each, v2.0 vs v2.1:
+
+| | v2.0 | v2.1 |
+|---|---|---|
+| Avg time per full run | 135 s | 93 s |
+| Output length | 15,975 chars | 13,851 chars |
+| Unneeded HTML files | 2 | 0 |
+| Unrequested video offers | 2 of 2 | 0 of 2 |
+
+Short replies (confirmation, simple fact, guest message) produced no artifacts in either version.
 
 ## Capability fallbacks
 
