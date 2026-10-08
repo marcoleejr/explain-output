@@ -13,12 +13,49 @@ The agent always writes the text summary first. It escalates only when a richer 
 
 ## Install
 
-Copy the `explain-output/` folder into your skills directory:
+Clone the repo once:
 
-- Claude Code: `~/.claude/skills/explain-output/` (personal) or `.claude/skills/explain-output/` (project)
-- Other harnesses: see your harness docs for the skills path.
+```bash
+git clone https://github.com/marcoleejr/explain-output.git
+```
 
-The folder must contain `SKILL.md`. The folder name must match the `name` field.
+Then copy the `explain-output/` folder (the one with `SKILL.md`) into your agent's skills directory.
+
+### Claude Code
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R explain-output/explain-output ~/.claude/skills/
+```
+
+Project-only: use `.claude/skills/` in the repo instead.
+
+### Codex
+
+Codex reads the shared Agent Skills folder.
+
+```bash
+mkdir -p ~/.agents/skills
+cp -R explain-output/explain-output ~/.agents/skills/
+```
+
+Project-only: use `.agents/skills/` in the repo. Restart Codex after installing.
+Invoke it explicitly with `$explain-output`, or let Codex pick it from the description.
+
+### Pi
+
+Install it as a Pi package straight from GitHub:
+
+```bash
+pi install git:github.com/marcoleejr/explain-output
+```
+
+Add `-l` to install it only for the current project. Pi also reads `~/.agents/skills/`, so the Codex copy works too.
+Invoke it explicitly with `/skill:explain-output`.
+
+### Any other harness
+
+Copy `explain-output/` into the harness skills path. The folder must contain `SKILL.md`, and the folder name must match the `name` field.
 
 ## Trigger
 
