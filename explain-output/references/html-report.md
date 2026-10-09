@@ -2,7 +2,7 @@
 
 - One self-contained `.html` file. Inline CSS. No build step, no CDN, no external fonts or images.
 - Static: no JavaScript, no network. It must look complete in any viewer, including chat-app previews and iOS Quick Look. Draw charts as inline SVG or CSS bars, never canvas or a chart library.
-- Motion only when it explains a change over time: embed a short silent MP4 with `<video controls loop muted playsinline>` (the reader can pause and scrub), plus a static frame as `poster`. No GIF: it cannot be paused.
+- Motion only when it explains a change over time: send a short silent MP4 next to the HTML (chat players and browsers let the reader pause and scrub). In the HTML, show the key frame as a static SVG. No GIF: it cannot be paused.
 - Mobile: one column under 600px, text at least 16px.
 - Path: `explain/<slug>.html` under the project root (create the folder). With no project, use the system temp folder. Do not commit it unless the user asks.
 - Reply with the rung 1 summary, then the path. Attach the file if the environment can send files.
