@@ -1,3 +1,5 @@
+<p align="center"><b>English</b> · <a href="README.es.md">Español</a></p>
+
 <p align="center">
   <img src="assets/hero.webp" alt="explain-output — an Agent Skill that makes your agent answer in the format you understand fastest" width="100%">
 </p>
