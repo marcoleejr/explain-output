@@ -10,6 +10,24 @@
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-ffb547?style=flat-square"></a>
 </p>
 
+## Why ASD-STE100
+
+[ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) is the writing standard for aircraft maintenance manuals. It exists so that a mechanic, maybe not a native speaker, reads an instruction once and cannot get it wrong. It has 53 writing rules and a dictionary of about 900 approved words, each with one meaning.
+
+Agent replies have the same problem: long, hedged, and easy to misread. This skill applies about 80% of STE to every reply. It keeps the rules that cut reading time and drops the strict dictionary:
+
+- One idea per sentence, under 20 words.
+- Active voice. Instructions in the imperative: "Run X".
+- One term, one meaning. No synonyms for the same thing.
+- Concrete numbers, never "several" or "significant".
+- The result first, then the evidence, then the next step.
+
+| Typical writing | STE-style |
+|---|---|
+| It would probably be a good idea to consider leaving home a little earlier than you normally would, since international flights can sometimes involve longer lines at check-in and security. | Leave home by 3:15 am. You reach JFK at 4:10 am, 3 hours before departure. |
+
+Text is rung 1, and every reply gets it. The other rungs are rare extras on top.
+
 ## The ladder
 
 Every reply is rung 1. A higher rung is added only when its criterion is met.
@@ -27,7 +45,7 @@ Real replies, not edited. Claude Opus 5.5 in Pi, clean context.
 
 ### 1. Text
 
-Plain questions get plain text: result first, no extra format.
+Most questions stop here. Same model, same answer, less to read.
 
 #### When to leave for the airport
 
@@ -105,7 +123,7 @@ Plain questions get plain text: result first, no extra format.
 
 ### 2. Chart
 
-One data series whose shape is the answer, so the skill adds a chart.
+You did not ask for a chart. The answer is the shape of one data series, so the skill adds one.
 
 **You ask:** My electricity bills in USD for the last 12 months: Jan 92, Feb 88, Mar 71, Apr 64, May 79, Jun 118, Jul 141, Aug 146, Sep 112, Oct 70, Nov 74, Dec 95. Why is it so high some months, and what is my yearly total?
 
@@ -121,25 +139,19 @@ One data series whose shape is the answer, so the skill adds a chart.
 
 ### 3. HTML report
 
-Six options with 6 attributes each, and a report request, so the skill writes one static HTML file.
+You did not ask for a report. 11 findings is more than 6, so the skill adds one static HTML file.
 
-**You ask:** Help me pick an apartment and give me a report. A: $1,450, 62 m2, 25 min commute, 3rd floor no elevator, pets ok, no parking. B: $1,620, 70 m2, 15 min, elevator, no pets, parking. C: $1,380, 55 m2, 40 min, ground floor, pets ok, parking. D: $1,700, 80 m2, 20 min, elevator, pets ok, no parking. E: $1,520, 65 m2, 30 min, 2nd floor, no pets, parking. F: $1,410, 58 m2, 35 min, elevator, pets ok, parking. I have a dog and I drive to work.
+**You ask:** The home inspector's notes for the house I want to buy. What do I fix first, and what should I ask the seller to pay for? 1) Roof: 18 years old, some missing shingles, quote $9,500. 2) Water heater: 14 years old, rust at the base, $1,400. 3) Electrical panel: brand known for failures, $2,800. 4) Bathroom fan vents into the attic, $350. 5) Gutters clogged, $200. 6) Crack in the driveway, $1,200. 7) GFCI outlets missing in the kitchen, $300. 8) Deck railing loose, $450. 9) Furnace 22 years old, still works, $5,500. 10) Window seals failed in 3 windows, $900. 11) Grading slopes toward the house on the north side, $1,800.
 
-> I recommend apartment F. It's $1,410 for 58 m², with a 35 min commute, an elevator, pets allowed and parking.
+> I'd ask the seller to cover $21,000 of the $24,400 total, and do $1,300 of cheap safety fixes yourself first.
 
-<img src="assets/ex-html.webp" alt="Static HTML report: verdict, filter table and finalist comparison" width="700">
+<img src="assets/ex-html.webp" alt="Static HTML report: ask the seller for $21,000, fix $1,300 first, defer $2,100" width="700">
+
+<sub>Without the skill: 3,595 characters of text in the chat, no file.</sub>
 
 ### 4. Video
 
-Only because you ask for one. Narration by ElevenLabs.
-
-**You ask:** Make a 20-second video that shows how saving $200 a month grows over 10 years at 7% a year, compared with keeping it in cash. Use ffmpeg (it is on the PATH) and narrate it. Save the MP4 in this directory.
-
-> The video is ready: `savings-200-month-10-years.mp4`. It runs exactly 20 seconds at 1280×720 and has a voiceover.
->
-> **Result:** after 10 years, cash holds $24,000 and the 7% account holds $34,617. That is $10,617 more, from growth alone.
-
-https://github.com/user-attachments/assets/42d58daf-66ba-4430-bd7b-3829e2544818
+The skill never offers a video. Ask for one and it writes the script first, then renders a narrated MP4.
 
 ## Install
 
