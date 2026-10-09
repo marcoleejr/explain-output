@@ -31,10 +31,10 @@ Rung 1 applies to every reply. Higher rungs are added on top only when their cri
 
 | Rung | Format | Use when | Example |
 |:--:|---|---|---|
-| **1** | **Constrained text**<br><sub>about 80% ASD-STE100</sub> | **Always.** Every reply, from a one-line answer to a full audit. Free. | <img src="assets/rung-1.png" alt="Result, evidence, next step" width="300"> |
-| **2** | **Diagram**<br><sub>Mermaid, D2, SVG</sub> | A flow, architecture, dependency map, timeline or decision tree with 4+ nodes. Fenced `mermaid` block. | <img src="assets/rung-2.png" alt="Flowchart that names the failing step" width="300"> |
-| **3** | **Single-file HTML**<br><sub>one .html file, no build</sub> | More than 6 findings, more than 12 numbers, more than 2 comparison dimensions, or you ask for a report. If a Markdown table fits, no HTML. | <img src="assets/rung-3.png" alt="Report with verdict, table and status colors" width="300"> |
-| **4** | **Explainer video**<br><sub>60–120 s, narration</sub> | Only when you ask for a video. Never from the topic alone. | <img src="assets/rung-4.png" alt="Animated explainer with captions" width="300"> |
+| **1** | **Constrained text**<br><sub>about 80% ASD-STE100</sub> | **Always.** Every reply, from a one-line answer to a full audit. Free. | <img src="assets/rung-1.webp" alt="Result, evidence, next step" width="300"> |
+| **2** | **Diagram**<br><sub>Mermaid, D2, SVG</sub> | A flow, architecture, dependency map, timeline or decision tree with 4+ nodes. Fenced `mermaid` block. | <img src="assets/rung-2.webp" alt="Flowchart that names the failing step" width="300"> |
+| **3** | **Single-file HTML**<br><sub>one .html file, no build</sub> | More than 6 findings, more than 12 numbers, more than 2 comparison dimensions, or you ask for a report. If a Markdown table fits, no HTML. | <img src="assets/rung-3.webp" alt="Report with verdict, table and status colors" width="300"> |
+| **4** | **Explainer video**<br><sub>60–120 s, narration</sub> | Only when you ask for a video. Never from the topic alone. | <img src="assets/rung-4.webp" alt="Animated explainer with captions" width="300"> |
 
 Rung 1 in full:
 
