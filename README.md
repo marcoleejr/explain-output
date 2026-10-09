@@ -90,16 +90,16 @@ On every reply. Rung 1 costs nothing, so short answers get tighter instead of sl
 
 ## Tested
 
-Clean A/B in Pi (no other skills, no global context), 8 scenarios, 2 runs each, v2.0 vs v2.1:
+Clean A/B in Pi (no other skills, no global context), 8 scenarios, 2 runs each:
 
-| | v2.0 | v2.1 |
-|---|---|---|
-| Avg time per full run | 135 s | 93 s |
-| Output length | 15,975 chars | 13,851 chars |
-| Unneeded HTML files | 2 | 0 |
-| Unrequested video offers | 2 of 2 | 0 of 2 |
+| | v2.0 | v2.1 | v2.2 |
+|---|---|---|---|
+| Skill body loaded per trigger | ~1,545 tok | ~1,545 tok | **~693 tok** |
+| Unneeded HTML files | 2 | 0 | 0 |
+| Unrequested video offers | 2 of 2 | 0 of 2 | 0 of 2 |
+| One-line confirmation opens with the result | — | 0 of 2 | **2 of 2** |
 
-Short replies (confirmation, simple fact, guest message) produced no artifacts in either version.
+v2.2 keeps diagram, HTML and video instructions in `references/`. The agent reads them only when it escalates. Short replies (confirmation, simple fact, guest message) produced no artifacts in any version. Reviewed by Claude Fable 5.1, DeepSeek V4.1 Flash and GPT-6 Luna.
 
 ## Capability fallbacks
 
