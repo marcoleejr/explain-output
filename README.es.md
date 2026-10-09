@@ -140,9 +140,6 @@ No pediste una gráfica. La respuesta es la forma de una serie de datos, así qu
 > - **Abril** fue el mes más barato, con $64. Agosto costó 2.3 veces más.
 > - **Diciembre y enero** ($95 y $92) suben un poco. Suele pasar por la calefacción, las noches más largas y las fiestas.
 > - **Primavera y otoño** (mar–may, oct–nov) quedan entre $64 y $79. Así se ve tu consumo cuando no usas clima.
-> Con solo los montos en dólares no puedo confirmar la causa. Para comprobarla:
-> 1. Compara los kWh de agosto y de abril en el recibo. Si los kWh también suben unas 2 veces, la causa es el consumo y no la tarifa.
-> 2. Revisa si tu compañía cobra más caro en verano o pasa a un precio más alto cuando consumes mucho. Las dos cosas son comunes y hacen que los meses altos suban todavía más.
 
 <img src="assets/ex-chart-es.webp" alt="Gráfica de barras de 12 recibos de luz con junio a septiembre en rojo" width="700">
 
