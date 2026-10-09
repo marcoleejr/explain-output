@@ -99,7 +99,7 @@ Clean A/B in Pi (no other skills, no global context), 8 scenarios, 2 runs each:
 | Unrequested video offers | 2 of 2 | 0 of 2 | 0 of 2 | 0 of 2 |
 | One-line confirmation opens with the result | — | 0 of 2 | 2 of 2 | 2 of 2 |
 
-v2.2 keeps diagram, HTML and video instructions in `references/`. The agent reads them only when it escalates. Short replies (confirmation, simple fact, guest message) produced no artifacts in any version. Stats suite (10 data scenarios x 2 runs, incl. charts, HTML and a 20 s narrated video): v2.2 picked the expected format 18/20 (no skill: 12/20); v2.3 20/20, all HTML readable with JS off, all replies result-first. Reviewed by Claude Fable 5.1, DeepSeek V4.1 Flash and GPT-6 Luna.
+v2.2 keeps diagram, HTML and video instructions in `references/`. The agent reads them only when it escalates. Short replies (confirmation, simple fact, guest message) produced no artifacts in any version. Stats suite (10 data scenarios x 2 runs, incl. charts, HTML and a 20 s narrated video): v2.2 picked the expected format 18/20 (no skill: 12/20); v2.3 20/20, all HTML static and readable offline, all replies result-first. Reviewed by Claude Fable 5.1, DeepSeek V4.1 Flash and GPT-6 Luna.
 
 ## Capability fallbacks
 

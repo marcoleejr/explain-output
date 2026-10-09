@@ -3,7 +3,7 @@ name: explain-output
 description: Shape every reply so the reader spends the least time to understand and decide. Use for every reply, from a one-line confirmation to a full audit, report, comparison or explanation. Base is constrained text (ASD-STE100 style). Escalate on fixed criteria to a diagram or chart, a single-file HTML report, or an explainer video.
 license: MIT
 metadata:
-  version: "2.3.0"
+  version: "2.3.1"
   author: marcoleejr
 ---
 

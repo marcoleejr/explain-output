@@ -1,10 +1,8 @@
 # Rung 3 — Single-file HTML
 
 - One self-contained `.html` file. Inline CSS. No build step, no CDN, no external fonts or images.
-- Progressive enhancement. The page must be complete with JavaScript off, because chat-app previews, email and iOS Quick Look block scripts and network. Draw charts as inline SVG or CSS bars, never canvas or a chart library.
-- Then make it interactive with inline JS on top: tooltips, filters, sortable tables, toggles, step-through animation. With JS off, the static version stays.
-- If the environment can publish a URL (local server, tunnel, static host), send the link: it opens in a real browser with JS. Otherwise send the file and say "open in Safari or Chrome for the interactive version".
-- Top: verdict in 3 lines plus key numbers. Detail below in `<details>`. Green, amber, red status.
+- Static: no JavaScript, no network. It must look complete in any viewer, including chat-app previews and iOS Quick Look. Draw charts as inline SVG or CSS bars, never canvas or a chart library.
+- Motion only when it explains a change over time: embed a short silent MP4 with `<video controls loop muted playsinline>` (the reader can pause and scrub), plus a static frame as `poster`. No GIF: it cannot be paused.
 - Mobile: one column under 600px, text at least 16px.
 - Path: `explain/<slug>.html` under the project root (create the folder). With no project, use the system temp folder. Do not commit it unless the user asks.
 - Reply with the rung 1 summary, then the path. Attach the file if the environment can send files.
