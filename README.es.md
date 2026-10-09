@@ -159,6 +159,12 @@ No pediste un reporte. 11 hallazgos son más de 6, así que el skill agrega un a
 
 El skill nunca ofrece un video. Si lo pides, primero escribe el guion y después renderiza un MP4 narrado.
 
+**Preguntas** (en inglés): Make a 20-second video that shows how saving $200 a month grows over 10 years at 7% a year, compared with keeping it in cash. Use ffmpeg (it is on the PATH) and narrate it. Save the MP4 in this directory.
+
+https://github.com/user-attachments/assets/42d58daf-66ba-4430-bd7b-3829e2544818
+
+<sub>Es el mismo video del README en inglés, con narración en inglés.</sub>
+
 ## Instalación
 
 Funciona en cualquier harness compatible con [Agent Skills](https://agentskills.io/specification).
