@@ -62,7 +62,8 @@ flowchart LR
 
 ## Rung 3 — Single-file HTML
 
-- One self-contained `.html` file. Inline CSS and JS. A chart library from a CDN is acceptable. No build step.
+- One self-contained `.html` file. Inline CSS. No build step, no CDN, no external fonts or images.
+- Content must render with JavaScript off. Many viewers block scripts and network: chat-app previews, email, iOS Quick Look. Draw charts as inline SVG or CSS bars, not canvas or a chart library. JS is allowed only for optional extras such as sorting.
 - Top of page: verdict in 3 lines plus the key numbers. Detail below, collapsible. Green, amber, red status. Sticky nav only above 4 sections.
 - Mobile-readable: one column under 600px, text at least 16px.
 - Save to `./explain/<slug>.html` or the project's docs folder if it should persist. Do not commit disposable artifacts.
