@@ -18,5 +18,5 @@ flowchart LR
 
 - Use it when the shape of the data is the answer: a trend, a correlation, an outlier, a distribution.
 - One chart only. Write it as a standalone SVG file (no JS, no external fonts). Convert to PNG only if the client cannot show SVG.
-- Title states the takeaway: "Each $1 of ads adds $4.38 in sales". Label axes with units. Annotate the one point that matters.
+- Title states the takeaway: "Each $1 of ads adds $4.38 in sales". Label axes with units. Annotate the one point that matters. No label may cover a bar, a point or another label.
 - Keep the numbers that decide the question in the rung 1 text. The chart is support, not the answer.

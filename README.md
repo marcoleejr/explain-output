@@ -21,102 +21,125 @@ Every reply is rung 1. A higher rung is added only when its criterion is met.
 | **3** | **Static HTML**<br><sub>one file, no JS</sub> | More than 6 findings, more than one chart, a table over 5 columns or 15 rows, or you ask for a report. | <img src="assets/rung-3.webp" alt="Report with verdict, table and status colors" width="300"> |
 | **4** | **Explainer video**<br><sub>narrated MP4</sub> | Only when you ask. Uses ElevenLabs if `ELEVENLABS_API_KEY` is set, else local TTS. | <img src="assets/rung-4.webp" alt="Animated explainer with captions" width="300"> |
 
-## Before and after
+## Examples
 
-Real, unedited replies. Same model (Claude Opus 5.5 in Pi), same prompt, clean context. Same answer, less to read.
+Real replies, not edited. Claude Opus 5.5 in Pi, clean context.
 
-### Pick a model
+### 1. Text
 
-**Prompt:** Compare 3 fraud classifiers. A: precision 0.91, recall 0.78, F1 0.84. B: 0.86, 0.88, 0.87. C: 0.93, 0.70, 0.80. Missing a fraud is expensive. Which one should we ship?
+Plain questions get plain text: result first, no extra format.
 
-<details><summary><b>Without the skill</b> — 2,042 chars (click to open)</summary>
+#### When to leave for the airport
 
-> **Ship B.** It has the highest recall (0.88), and recall is the metric that matters when missing fraud is expensive.
->
-> ### How many frauds each model misses
->
-> Recall is the share of real frauds that a model catches. Out of every 100 real frauds:
->
-> | Model | Frauds caught | Frauds missed | False alarms (≈ caught/precision − caught) |
-> |---|---|---|---|
-> | A | 78 | 22 | ~7.7 |
-> | **B** | **88** | **12** | ~14.3 |
-> | C | 70 | **30** | ~5.3 |
->
-> - **B vs A:** B catches 10 more frauds and raises about 6.6 more false alarms. That's a good trade unless one false alarm costs more than about 1.5× one missed fraud. If missing fraud is expensive, it almost certainly doesn't.
-> - **C is the worst option here.** It has the highest precision (0.93), but it misses 30% of fraud. Its F1 is also the lowest (0.80).
-> - B's F1 (0.87) is the best of the three, so it doesn't give up overall balance to get its recall.
->
-> ### Checks before shipping
->
-> 1. **Threshold tuning.** These numbers come from one decision threshold per model. A's precision is higher, so lowering its threshold might get it to 0.88 recall with better precision than B. Compare the full precision-recall curves, or precision at your target recall, rather than these single points.
-> 2. **Put a cost on each error.** If you can estimate the cost of a missed fraud and the cost of a false alarm (like a manual review or a blocked customer), pick the model and threshold that minimize total expected cost. You can also use an F-beta score with β > 1, which weights recall more heavily.
-> 3. **Statistical significance.** Make sure all three were evaluated on the same held-out test set and that it contains enough fraud cases. Fraud data is usually highly imbalanced, so a 0.88 vs 0.78 recall gap based on only a few hundred frauds could be noise. Bootstrapped confidence intervals would show this.
-> 4. **Review capacity.** B flags about 7% more transactions overall. Check that your review team or downstream process can handle the extra volume.
->
-> If none of those checks changes the picture, go with B.
+**You ask:** My flight to Madrid leaves at 7:10 am from JFK. I live 45 minutes away, I have a checked bag, and it's international. What time should I leave home?
 
-</details>
+**With the skill** (38% shorter)
 
-**With the skill** — 987 chars, 52% shorter
+> **Leave home by 3:15 am.** That gets you to JFK around 4:10 am, 3 hours before your 7:10 am departure.
+>
+> How the time works out:
+>
+> 1. **3:15 am:** Leave home. You said the drive takes 45 minutes.
+> 2. **~4:00 am:** Arrive at JFK. Allow 10 minutes to park or get to the terminal.
+> 3. **~4:10 am:** Start check-in and drop your bag. Most airlines stop taking checked bags on international flights 60 minutes before departure. Check your airline's exact cutoff.
+> 4. **~4:45 am:** Go through security. JFK has a busy early wave of morning departures, so lines can be long.
+> 5. **~6:20–6:40 am:** Boarding starts.
+>
+> If you want less stress, leave at 3:00 am. Don't leave later than 3:45 am, because that only leaves about 2.5 hours at the airport. Checking in online before you go and having TSA PreCheck both save time, but you still need to drop your bag in person.
 
-> Ship **B**. It has the highest recall (0.88), so it misses the fewest frauds.
->
-> | Model | Precision | Recall | F1 | Frauds missed per 100 | False alarms per 100 flags |
-> |---|---|---|---|---|---|
-> | A | 0.91 | 0.78 | 0.84 | 22 | 9 |
-> | **B** | 0.86 | **0.88** | **0.87** | **12** | 14 |
-> | C | 0.93 | 0.70 | 0.80 | 30 | 7 |
->
-> - **B against A:** B misses 10 fewer frauds per 100. The cost is 5 more false alarms per 100 flags.
-> - **C:** do not ship it. It misses 30 of every 100 frauds, which is the worst result. Its high precision does not make up for this when a miss is expensive.
-> - **F1:** B also has the best F1. That score weights precision and recall equally, but your costs are not equal. Recall is the deciding number here.
->
-> Next step: check that your team can review the extra false alarms. If a missed fraud costs much more than reviewing a false alarm, B is clearly the right choice. You can also lower B's decision threshold to catch more fraud, if the team can handle more alerts.
+<details><summary><b>Without the skill</b> (1,380 characters)</summary>
 
-### Read an A/B test
-
-**Prompt:** Checkout A/B test. Variant A: 213 conversions out of 5,200 visits. Variant B: 235 out of 5,100. Is the difference statistically significant at 95%?
-
-<details><summary><b>Without the skill</b> — 1,244 chars (click to open)</summary>
-
-> **No, the difference is not statistically significant at the 95% level.**
+> **Leave home by about 3:15 a.m.**
 >
-> | | Conversions | Visits | Rate |
-> |---|---|---|---|
-> | A | 213 | 5,200 | 4.10% |
-> | B | 235 | 5,100 | 4.61% |
+> Here's how I got there:
+> - **7:10 a.m.** Departure
+> - **6:20–6:40 a.m.** Boarding usually starts 30–50 minutes before departure on international flights
+> - **6:10 a.m.** Bag drop usually closes 60 minutes before departure for international flights. If you miss it, you can't check your bag.
+> - **4:10 a.m.** Arrive at JFK. The standard advice for international flights is 3 hours early.
+> - **~3:15 a.m.** Leave home. That's your 45-minute drive plus about 10–15 minutes extra for parking, the AirTrain, or rideshare drop-off.
 >
-> **Two-proportion z-test (two-sided):**
-> - Difference: +0.51 percentage points, which is about a 12.5% relative lift for B.
-> - Pooled rate: 448 / 10,300 = 4.35%
-> - Standard error: √[0.0435 × 0.9565 × (1/5200 + 1/5100)] ≈ 0.00402
-> - **z ≈ 1.27, p ≈ 0.20**
+> Some notes:
+> - **Traffic should be light that early,** so 45 minutes is a fair estimate. If you're parking in long-term lots and taking the AirTrain, add another 15–20 minutes and leave around 3:00 a.m.
+> - **Check-in counters may not be open yet** if you arrive before about 4:00 a.m., since some airlines open 3 hours before departure. That's another reason not to come much earlier.
+> - **You could leave closer to 3:45 a.m.** if you have TSA PreCheck or Global Entry, check in online, and are fine with less buffer. That's cutting it close for an international flight with a checked bag, though, especially if the bag drop line is long.
+> - **Look up your airline and terminal.** Iberia, Delta, and American fly JFK–Madrid out of different terminals, and their bag drop cutoffs can vary a bit.
 >
-> To be significant at 95%, z would need to be at least 1.96, or p would need to be 0.05 or lower.
->
-> **95% confidence interval for B − A:** −0.28 pp to +1.30 pp. The interval includes zero, so the data fits B being slightly worse, about the same, or meaningfully better than A.
->
-> **What to do next:** The test is underpowered for an effect this size. To reliably detect a 12.5% relative lift from a 4.1% baseline (95% confidence, 80% power), you'd need about **25,000 visits per variant**. That's roughly 5 times what you have now.
->
-> Decide the total sample size before you continue. Don't stop the test the moment p drops below 0.05, because checking repeatedly and stopping early makes false positives more likely. If you need to make a call now, B looks promising, but this result doesn't show that it's better.
+> Have a great trip to Madrid! ✈️
 
 </details>
 
-**With the skill** — 923 chars, 26% shorter
+#### Message to a landlord
 
-> No, the difference is not statistically significant at 95%. The p-value is 0.20, and the 95% threshold requires p < 0.05.
+**You ask:** Write a short message to my landlord. The kitchen sink has leaked for 4 days. I sent a photo on Monday and got no answer.
+
+**With the skill** (34% shorter)
+
+> Hi [Landlord's name],
 >
-> | | Visits | Conversions | Rate |
-> |---|---|---|---|
-> | A | 5,200 | 213 | 4.10% |
-> | B | 5,100 | 235 | 4.61% |
+> Our kitchen sink has leaked for 4 days now. I sent you a photo of it on Monday but have not heard back. Please arrange a repair as soon as possible, before the water causes more damage. Can you tell me by [day] when someone can come?
 >
-> - **Lift:** B is 0.51 percentage points higher than A, which is +12.5% relative.
-> - **Test:** I used a two-proportion z-test with a two-sided alternative. z = 1.27 and p = 0.203.
-> - **95% confidence interval for B − A:** −0.28 to +1.30 percentage points. The interval includes 0, so the data does not rule out "no difference" or a small loss.
+> Thanks,<br>
+> [Your name]<br>
+> [Unit / address]
+
+<details><summary><b>Without the skill</b> (445 characters)</summary>
+
+> Here's a draft:
 >
-> **Next step:** Keep the test running. To reliably detect a lift of this size (4.1% → 4.6%) at 95% confidence and 80% power, you need about 25,000 visits per variant. That is roughly 5 times the current sample. Set the sample size before you check again. If you stop the test the first time p drops below 0.05, the chance of a false positive goes up.
+> ---
+>
+> Hi [Landlord's name],
+>
+> The kitchen sink has been leaking for 4 days now. I sent you a photo on Monday but haven't heard back. Could you let me know today when someone can come fix it? I'm worried about water damage to the cabinet and floor if it keeps going.
+>
+> I'm usually available [times/days]. Thanks.
+>
+> [Your name]
+> [Unit/address]
+>
+> ---
+>
+> If you want it firmer, you could add: "Please treat this as a formal repair request."
+
+</details>
+
+### 2. Chart
+
+One data series whose shape is the answer, so the skill adds a chart.
+
+**You ask:** My electricity bills in USD for the last 12 months: Jan 92, Feb 88, Mar 71, Apr 64, May 79, Jun 118, Jul 141, Aug 146, Sep 112, Oct 70, Nov 74, Dec 95. Why is it so high some months, and what is my yearly total?
+
+> Your yearly total is **$1,150**, which averages to about $96 a month. Your bills are high in summer. June to September cost $517, which is 45% of the year.
+>
+> | Season | Months | Average per month |
+> |---|---|---|
+> | Summer | Jun–Sep | $129 |
+> | Winter | Dec–Feb | $92 |
+> | Spring and fall | Mar–May, Oct–Nov | $72 |
+
+<img src="assets/ex-chart.webp" alt="Bar chart of 12 monthly electricity bills with June to September in red" width="700">
+
+### 3. HTML report
+
+Six options with 6 attributes each, and a report request, so the skill writes one static HTML file.
+
+**You ask:** Help me pick an apartment and give me a report. A: $1,450, 62 m2, 25 min commute, 3rd floor no elevator, pets ok, no parking. B: $1,620, 70 m2, 15 min, elevator, no pets, parking. C: $1,380, 55 m2, 40 min, ground floor, pets ok, parking. D: $1,700, 80 m2, 20 min, elevator, pets ok, no parking. E: $1,520, 65 m2, 30 min, 2nd floor, no pets, parking. F: $1,410, 58 m2, 35 min, elevator, pets ok, parking. I have a dog and I drive to work.
+
+> I recommend apartment F. It's $1,410 for 58 m², with a 35 min commute, an elevator, pets allowed and parking.
+
+<img src="assets/ex-html.webp" alt="Static HTML report: verdict, filter table and finalist comparison" width="700">
+
+### 4. Video
+
+Only because you ask for one. Narration by ElevenLabs.
+
+**You ask:** Make a 20-second video that shows how saving $200 a month grows over 10 years at 7% a year, compared with keeping it in cash. Use ffmpeg (it is on the PATH) and narrate it. Save the MP4 in this directory.
+
+> The video is ready: `savings-200-month-10-years.mp4`. It runs exactly 20 seconds at 1280×720 and has a voiceover.
+>
+> **Result:** after 10 years, cash holds $24,000 and the 7% account holds $34,617. That is $10,617 more, from growth alone.
+
+https://github.com/user-attachments/assets/42d58daf-66ba-4430-bd7b-3829e2544818
 
 ## Install
 
