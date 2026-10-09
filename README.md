@@ -155,6 +155,10 @@ You did not ask for a report. 11 findings is more than 6, so the skill adds one 
 
 The skill never offers a video. Ask for one and it writes the script first, then renders a narrated MP4.
 
+**You ask:** Make a 20-second video that shows how saving $200 a month grows over 10 years at 7% a year, compared with keeping it in cash. Use ffmpeg (it is on the PATH) and narrate it. Save the MP4 in this directory.
+
+https://github.com/user-attachments/assets/42d58daf-66ba-4430-bd7b-3829e2544818
+
 ## Install
 
 Works in any harness that supports [Agent Skills](https://agentskills.io/specification).
