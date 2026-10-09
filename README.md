@@ -92,14 +92,14 @@ On every reply. Rung 1 costs nothing, so short answers get tighter instead of sl
 
 Clean A/B in Pi (no other skills, no global context), 8 scenarios, 2 runs each:
 
-| | v2.0 | v2.1 | v2.2 |
-|---|---|---|---|
-| Skill body loaded per trigger | ~1,545 tok | ~1,545 tok | **~693 tok** |
-| Unneeded HTML files | 2 | 0 | 0 |
-| Unrequested video offers | 2 of 2 | 0 of 2 | 0 of 2 |
-| One-line confirmation opens with the result | — | 0 of 2 | **2 of 2** |
+| | v2.0 | v2.1 | v2.2 | v2.3 |
+|---|---|---|---|---|
+| Skill body loaded per trigger | ~1,545 tok | ~1,545 tok | ~693 tok | ~750 tok |
+| Unneeded HTML files | 2 | 0 | 0 | 0 |
+| Unrequested video offers | 2 of 2 | 0 of 2 | 0 of 2 | 0 of 2 |
+| One-line confirmation opens with the result | — | 0 of 2 | 2 of 2 | 2 of 2 |
 
-v2.2 keeps diagram, HTML and video instructions in `references/`. The agent reads them only when it escalates. Short replies (confirmation, simple fact, guest message) produced no artifacts in any version. Reviewed by Claude Fable 5.1, DeepSeek V4.1 Flash and GPT-6 Luna.
+v2.2 keeps diagram, HTML and video instructions in `references/`. The agent reads them only when it escalates. Short replies (confirmation, simple fact, guest message) produced no artifacts in any version. Stats suite (10 data scenarios x 2 runs, incl. charts, HTML and a 20 s narrated video): v2.2 picked the expected format 18/20 (no skill: 12/20); v2.3 20/20, all HTML readable with JS off, all replies result-first. Reviewed by Claude Fable 5.1, DeepSeek V4.1 Flash and GPT-6 Luna.
 
 ## Capability fallbacks
 

@@ -1,9 +1,9 @@
 ---
 name: explain-output
-description: Shape every reply so the reader spends the least time to understand and decide. Use for every reply, from a one-line confirmation to a full audit, report, comparison or explanation. Base is constrained text (ASD-STE100 style). Escalate on fixed criteria to a Mermaid diagram, a single-file HTML report, or an explainer video.
+description: Shape every reply so the reader spends the least time to understand and decide. Use for every reply, from a one-line confirmation to a full audit, report, comparison or explanation. Base is constrained text (ASD-STE100 style). Escalate on fixed criteria to a diagram or chart, a single-file HTML report, or an explainer video.
 license: MIT
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
   author: marcoleejr
 ---
 
@@ -18,8 +18,8 @@ Every reply is rung 1 text. Add a higher rung on top only when its row matches. 
 | Rung | Add | Only when |
 |---|---|---|
 | 1 | Constrained text | Always. Adds no files and no tool calls. |
-| 2 | Mermaid diagram | A flow, architecture, dependency map, timeline or decision tree with 4 to 12 nodes. More than 12: split it or use rung 3. Read `references/diagram.md`. |
-| 3 | Single-file HTML | More than 6 findings, more than 12 numbers, a table that needs more than 5 columns or 15 rows, or the user asks for a report or file. Read `references/html-report.md`. |
+| 2 | Diagram or chart | A flow, architecture, dependency map, timeline or decision tree with 4 to 12 nodes (Mermaid). Or one data series or comparison where the shape matters: trend, correlation, distribution (one SVG or PNG chart). More than 12 nodes or more than one chart: rung 3. Read `references/diagram.md`. |
+| 3 | Single-file HTML | More than 6 findings, more than one chart, a table that needs more than 5 columns or 15 rows, or the user asks for a report or file. Read `references/html-report.md`. |
 | 4 | Explainer video | The user asks for a video. Read `references/video.md`. |
 
 Do not announce the rung. Do not offer a higher rung. Do not mention skipped steps.
@@ -45,3 +45,4 @@ After: "The deploy fails because the cache key ignores the lockfile. 4 of 5 fail
 - Never fabricate data. Every number traces to tool output or user input.
 - Keep the rung 1 text when you add an artifact. The reader may never open it.
 - If a requested capability is missing (render, file send, TTS), deliver the nearest lower rung and say so in one sentence.
+- Artifacts are disposable. Build them for this reader and this question, not for reuse.

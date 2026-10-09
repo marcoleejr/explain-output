@@ -1,6 +1,6 @@
 {
   "name": "explain-output",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Agent Skill: pick the clearest output format (constrained text, diagram, HTML, video).",
   "license": "MIT",
   "keywords": ["pi-package", "agent-skill", "skills"],
