@@ -19,7 +19,7 @@ Goal: the reader understands and decides in the least time.
 4. **Chat app:** ≤ 12 lines, the user's language, no jargon. Say "change" for PR, "published" for merge, "scheduled task" for cron.
 5. **No offer.** Never ask "do you want a report or a diagram?". Do the rung or skip it.
 
-A short reply (≤ 6 items, ≤ 12 lines) with no flow of 4–12 nodes stays text. Numbered steps of an instruction (do 1, then 2, then 3) are a list, not a flow: they stay text.
+A short reply stays text: ≤ 6 items, ≤ 12 lines and no flow of 4 or more nodes. Numbered steps of an instruction (do 1, then 2, then 3) are list items, not flow nodes: up to 6 stay text, more than 6 → rung 3.
 
 ## Rungs
 
