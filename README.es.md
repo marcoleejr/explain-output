@@ -37,8 +37,8 @@ Cada respuesta es nivel 1. Un nivel más alto se agrega solo cuando se cumple su
 | Nivel | Formato | Cuándo | Ejemplo |
 |:--:|---|---|---|
 | **1** | **Texto restringido**<br><sub>~80% ASD-STE100</sub> | Siempre. Resultado, evidencia, siguiente paso. | <img src="assets/rung-1.webp" alt="Resultado, evidencia, siguiente paso" width="300"> |
-| **2** | **Diagrama o gráfica**<br><sub>Mermaid o un SVG</sub> | Un flujo de 4 a 12 pasos, o una serie de datos cuya forma es la respuesta. | <img src="assets/rung-2.webp" alt="Diagrama de flujo que señala el paso que falla" width="300"> |
-| **3** | **HTML estático**<br><sub>un archivo, sin JS</sub> | Más de 6 hallazgos, más de una gráfica, una tabla de más de 5 columnas o 15 filas, o pides un reporte. | <img src="assets/rung-3.webp" alt="Reporte con veredicto, tabla y colores de estado" width="300"> |
+| **2** | **Diagrama o gráfica**<br><sub>Mermaid o un SVG</sub> | Un flujo de 4 a 12 nodos (no los pasos numerados de una instrucción), o una serie de datos cuya forma es la respuesta. | <img src="assets/rung-2.webp" alt="Diagrama de flujo que señala el paso que falla" width="300"> |
+| **3** | **HTML estático**<br><sub>un archivo, sin JS</sub> | Más de 6 ítems de lista, un flujo de más de 12 nodos, más de una gráfica, una tabla de más de 5 columnas o 15 filas, o pides un reporte. | <img src="assets/rung-3.webp" alt="Reporte con veredicto, tabla y colores de estado" width="300"> |
 | **4** | **Video explicativo**<br><sub>MP4 narrado</sub> | Solo si lo pides. Usa ElevenLabs si existe `ELEVENLABS_API_KEY`; si no, voz local. | <img src="assets/rung-4.webp" alt="Video explicativo animado con subtítulos" width="300"> |
 
 ## Ejemplos
@@ -145,7 +145,7 @@ No pediste una gráfica. La respuesta es la forma de una serie de datos, así qu
 
 ### 3. Reporte HTML
 
-No pediste un reporte. 11 hallazgos son más de 6, así que el skill agrega un archivo HTML estático.
+No pediste un reporte. Los 11 hallazgos son 11 ítems de lista, más de 6, así que el skill agrega un archivo HTML estático.
 
 **Preguntas:** Las notas del inspector de la casa que quiero comprar. ¿Qué arreglo primero y qué le pido al vendedor que pague? 1) Techo: 18 años, faltan algunas tejas, cotización $9,500. 2) Calentador de agua: 14 años, óxido en la base, $1,400. 3) Panel eléctrico: marca conocida por fallar, $2,800. 4) El extractor del baño saca el aire al ático, $350. 5) Canaletas tapadas, $200. 6) Grieta en la entrada del carro, $1,200. 7) Faltan tomas GFCI en la cocina, $300. 8) Baranda del deck floja, $450. 9) Calefacción de 22 años, todavía funciona, $5,500. 10) Sellos rotos en 3 ventanas, $900. 11) El terreno se inclina hacia la casa en el lado norte, $1,800.
 
