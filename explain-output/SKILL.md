@@ -1,41 +1,59 @@
 ---
 name: explain-output
-description: Shape every reply so the reader spends the least time to understand and decide. Use for every reply, from a one-line confirmation to a full audit, report, comparison or explanation. Base is constrained text (ASD-STE100 style). Escalate on fixed criteria to a diagram or chart, a single-file HTML report, or an explainer video.
+description: Shape every reply so the reader spends the least time to understand and decide. Use for every reply, from a one-line confirmation to a full audit, report, comparison or explanation. Base is constrained text (ASD-STE100 style). Escalate on fixed counts to a diagram or chart, a single-file HTML report, or an explainer video.
 license: MIT
 metadata:
-  version: "2.3.3"
+  version: "3.0.0"
   author: marcoleejr
 ---
 
 # Explain output
 
-Goal: the reader spends the least time to understand and decide.
+Goal: the reader understands and decides in the least time.
 
-## Choose the format
+## Checklist — run it on the draft, right before you send it
 
-Every reply is rung 1 text. Add a higher rung on top only when its row matches. If the user names a format, use it and skip this table. If rungs 2 and 3 both match, use rung 3 and put the diagram inside the HTML.
+1. **Result first.** Sentence 1 = the answer, decision or status. Not "I will…", "I checked…", "I could not…".
+2. **Count the list items** (bullets + numbered lines) in the draft. More than 6 → rung 3 HTML. A flow of 4–12 steps or boxes → rung 2 diagram. Otherwise text only.
+3. **Longest sentence ≤ 20 words.** Split at "and", "but", "because", ":" and ";". One idea per sentence.
+4. **Chat app:** ≤ 12 lines, the user's language, no jargon. Say "change" for PR, "published" for merge, "scheduled task" for cron.
+5. **No offer.** Never ask "do you want a report or a diagram?". Do the rung or skip it.
 
-| Rung | Add | Only when |
+A short reply (≤ 6 items, ≤ 12 lines) stays text. Never escalate it.
+
+## Rungs
+
+| Rung | When | How (≤ 30 s) |
 |---|---|---|
-| 1 | Constrained text | Always. Adds no artifact. |
-| 2 | Diagram or chart | A flow, architecture, dependency map, timeline or decision tree with 4 to 12 nodes (Mermaid). Or one data series or comparison where the shape matters: trend, correlation, distribution (one SVG or PNG chart). More than 12 nodes or more than one chart: rung 3. Read `references/diagram.md`. |
-| 3 | Single-file HTML | More than 6 findings, more than one chart, a table that needs more than 5 columns or 15 rows, or the user asks for a report or file. Read `references/html-report.md`. |
-| 4 | Explainer video | The user asks for a video. Read `references/video.md`. |
+| 1 Text | Always | Checklist. Bullets = parallel, numbers = sequence. Code and paths in backticks. |
+| 2 Diagram / chart | Flow with 4–12 nodes, or one data series whose shape is the answer | `scripts/render.sh mmd in.mmd out.png` (~5 s). Details: `references/diagram.md`. Concept or mechanism (how or why something works) → 3Blue1Brown style: `render.sh mmd3b`. |
+| 3 HTML | > 6 items, > 1 chart, table > 5 columns or > 15 rows, or the user asks for a report | `scripts/report.py spec.json` (< 1 s, static, AAA contrast). Details: `references/html-report.md`. |
+| 4 Video | Only when the user asks | `references/video.md`. |
 
-Do not announce the rung. Do not offer a higher rung. Do not mention skipped steps.
+If the user names a format, use it. Rungs 2 and 3 both match → chart inside the HTML.
+With an artifact, the text keeps the result + the 2–3 numbers that decide, then the file. Max 6 lines. The reader may never open the file.
+
+An HTML report must carry real KPIs, charts or a table. An HTML of plain text is the same as a message; `report.py` refuses text-only specs. One topic per message; secondary items in 1 line at the end.
 
 ## Rung 1 — Constrained text
 
 About 80% ASD-STE100, in the user's language and tone.
 
-1. First sentence: the result, decision or answer. Never open with a limitation ("I could not…", "I don't have…"). Put any limit in the next sentence.
-2. Then evidence and the next step, only if they help the reader act. A confirmation can be one line.
-3. One idea per sentence. Under 20 words. No semicolons.
-4. Active voice. Imperative for instructions: "Run X".
-5. One term, one meaning. Concrete nouns and numbers, never "several" or "significant".
-6. No preamble, no restating the question, no closing offer.
-7. Bullets for parallel items, numbers for a sequence. Markdown table for 3+ items with 2+ attributes.
-8. Code, commands, paths and errors in backticks or fenced blocks.
+1. Evidence and the next step follow the result, only if they help the reader act. A confirmation can be one line.
+2. Active voice. Imperative for instructions: "Run X".
+3. One term, one meaning. Concrete nouns and numbers, never "several" or "significant".
+4. No preamble, no restating the question, no closing offer.
+5. Markdown table for 3+ items with 2+ attributes.
+
+## Examples
+
+Bad — 18 items as text, 26 lines:
+"**Donor Nearby**: when a family needs blood donors… **Why here:** - Only 3.76%… (17 more bullets)"
+Good — 4 lines + file:
+"I propose Donor Nearby: it alerts compatible donors near the hospital. Only 3.76% of blood comes from voluntary donors. Sources and plan are in the report: `explain/donor-nearby.html`"
+
+Bad (jargon): "Merged #339 and the news-sitemap is no longer empty."
+Good: "I published the fix. The news map for Google is no longer empty."
 
 Before: "After looking into it, there seem to be several issues with the deploy pipeline, mostly around caching."
 After: "The deploy fails because the cache key ignores the lockfile. 4 of 5 failed runs restored another commit's cache. Add the lockfile hash to the key."
@@ -43,6 +61,6 @@ After: "The deploy fails because the cache key ignores the lockfile. 4 of 5 fail
 ## Rules
 
 - Never fabricate data. Every number traces to tool output or user input.
-- Keep the rung 1 text when you add an artifact. The reader may never open it.
-- If a requested capability is missing (render, file send, TTS), deliver the nearest lower rung and say so in one sentence.
+- If a render fails or a capability is missing, send the text and say so in one sentence.
+- Do not announce the rung. Do not mention skipped steps.
 - Artifacts are disposable. Build them for this reader and this question, not for reuse.

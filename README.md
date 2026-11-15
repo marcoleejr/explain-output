@@ -195,6 +195,16 @@ pi install git:github.com/marcoleejr/explain-output
 
 Invoke with `/skill:explain-output`.
 
+## Scripts (v3)
+
+The skill ships three optional helpers in `explain-output/scripts/`:
+
+- `report.py spec.json` — JSON spec to a static single-file HTML report (Python 3, no dependencies).
+- `render.sh mmd|mmd3b in.mmd out.png` — Mermaid to PNG. Needs Chrome and `mmdc` (or `pnpm`).
+- `render.sh shot in.html out.png 390` — mobile screenshot for the review pass. Needs Playwright for Python.
+
+Without them the skill still works: it writes the HTML or Mermaid by hand.
+
 ## Tested
 
 10 data scenarios, 2 runs each, clean Pi context: right format 20 of 20 with the skill (v2.3), 12 of 20 without. Replies were 50% shorter and all opened with the result.
