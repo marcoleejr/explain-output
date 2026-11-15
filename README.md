@@ -37,8 +37,8 @@ Every reply is rung 1. A higher rung is added only when its criterion is met.
 | Rung | Format | Use when | Example |
 |:--:|---|---|---|
 | **1** | **Constrained text**<br><sub>about 80% ASD-STE100</sub> | Always. Result first, then evidence, then next step. | <img src="assets/rung-1.webp" alt="Result, evidence, next step" width="300"> |
-| **2** | **Diagram or chart**<br><sub>Mermaid or one SVG</sub> | A flow with 4–12 steps, or one data series where the shape is the answer. | <img src="assets/rung-2.webp" alt="Flowchart that names the failing step" width="300"> |
-| **3** | **Static HTML**<br><sub>one file, no JS</sub> | More than 6 findings, more than one chart, a table over 5 columns or 15 rows, or you ask for a report. | <img src="assets/rung-3.webp" alt="Report with verdict, table and status colors" width="300"> |
+| **2** | **Diagram or chart**<br><sub>Mermaid or one SVG</sub> | A flow with 4–12 nodes (not the numbered steps of an instruction), or one data series where the shape is the answer. | <img src="assets/rung-2.webp" alt="Flowchart that names the failing step" width="300"> |
+| **3** | **Static HTML**<br><sub>one file, no JS</sub> | More than 6 list items, a flow over 12 nodes, more than one chart, a table over 5 columns or 15 rows, or you ask for a report. | <img src="assets/rung-3.webp" alt="Report with verdict, table and status colors" width="300"> |
 | **4** | **Explainer video**<br><sub>narrated MP4</sub> | Only when you ask. Uses ElevenLabs if `ELEVENLABS_API_KEY` is set, else local TTS. | <img src="assets/rung-4.webp" alt="Animated explainer with captions" width="300"> |
 
 ## Examples
@@ -141,7 +141,7 @@ You did not ask for a chart. The answer is the shape of one data series, so the 
 
 ### 3. HTML report
 
-You did not ask for a report. 11 findings is more than 6, so the skill adds one static HTML file.
+You did not ask for a report. The 11 findings are 11 list items, more than 6, so the skill adds one static HTML file.
 
 **You ask:** The home inspector's notes for the house I want to buy. What do I fix first, and what should I ask the seller to pay for? 1) Roof: 18 years old, some missing shingles, quote $9,500. 2) Water heater: 14 years old, rust at the base, $1,400. 3) Electrical panel: brand known for failures, $2,800. 4) Bathroom fan vents into the attic, $350. 5) Gutters clogged, $200. 6) Crack in the driveway, $1,200. 7) GFCI outlets missing in the kitchen, $300. 8) Deck railing loose, $450. 9) Furnace 22 years old, still works, $5,500. 10) Window seals failed in 3 windows, $900. 11) Grading slopes toward the house on the north side, $1,800.
 

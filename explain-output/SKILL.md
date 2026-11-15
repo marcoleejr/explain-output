@@ -14,20 +14,20 @@ Goal: the reader understands and decides in the least time.
 ## Checklist — run it on the draft, right before you send it
 
 1. **Result first.** Sentence 1 = the answer, decision or status. Not "I will…", "I checked…", "I could not…".
-2. **Count the list items** (bullets + numbered lines) in the draft. More than 6 → rung 3 HTML. A flow of 4–12 steps or boxes → rung 2 diagram. Otherwise text only.
+2. **Count the list items** (bullets + numbered lines) in the draft. More than 6 → rung 3 HTML. A flow of 4–12 nodes (a process, architecture or decision tree whose branches or links matter) → rung 2 diagram. More than 12 nodes → rung 3. Otherwise text only.
 3. **Longest sentence ≤ 20 words.** Split at "and", "but", "because", ":" and ";". One idea per sentence.
 4. **Chat app:** ≤ 12 lines, the user's language, no jargon. Say "change" for PR, "published" for merge, "scheduled task" for cron.
 5. **No offer.** Never ask "do you want a report or a diagram?". Do the rung or skip it.
 
-A short reply (≤ 6 items, ≤ 12 lines) stays text. Never escalate it.
+A short reply stays text: ≤ 6 items, ≤ 12 lines and no flow of 4 or more nodes. Numbered steps of an instruction (do 1, then 2, then 3) are list items, not flow nodes: up to 6 stay text, more than 6 → rung 3.
 
 ## Rungs
 
 | Rung | When | How (≤ 30 s) |
 |---|---|---|
 | 1 Text | Always | Checklist. Bullets = parallel, numbers = sequence. Code and paths in backticks. |
-| 2 Diagram / chart | Flow with 4–12 nodes, or one data series whose shape is the answer | `scripts/render.sh mmd in.mmd out.png` (~5 s). Details: `references/diagram.md`. Concept or mechanism (how or why something works) → 3Blue1Brown style: `render.sh mmd3b`. |
-| 3 HTML | > 6 items, > 1 chart, table > 5 columns or > 15 rows, or the user asks for a report | `scripts/report.py spec.json` (< 1 s, static, AAA contrast). Details: `references/html-report.md`. |
+| 2 Diagram / chart | Flow with 4–12 nodes (not the numbered steps of an instruction), or one data series whose shape is the answer | `scripts/render.sh mmd in.mmd out.png` (~5 s). Details: `references/diagram.md`. Concept or mechanism (how or why something works) → 3Blue1Brown style: `render.sh mmd3b`. |
+| 3 HTML | > 6 items, flow > 12 nodes, > 1 chart, table > 5 columns or > 15 rows, or the user asks for a report | `scripts/report.py spec.json` (< 1 s, static, AAA contrast). Details: `references/html-report.md`. |
 | 4 Video | Only when the user asks | `references/video.md`. |
 
 If the user names a format, use it. Rungs 2 and 3 both match → chart inside the HTML.
